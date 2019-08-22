@@ -12,6 +12,10 @@ public class Duke {
             try {
                 switch (currentInputArray[0]) {
                     case "list":
+                        if (tasks.isEmpty()) {
+                            System.out.print("    You have no tasks in your list.\n");
+                            break;
+                        }
                         System.out.print("    Here are the tasks in your list:\n" );
                         int i = 1;
                         for (Task t : tasks) {
@@ -19,8 +23,12 @@ public class Duke {
                         }
                         break;
                     case "done":
+                        if (currentInputArray.length < 2) throw new InsufficientArgumentError();
+                        if (!currentInputArray[1].matches("-?\\d+")) throw new MissingKeywordError(MissingKeywordError.Keyword.NUMBER);
+                        int taskNumber = Integer.parseInt(currentInputArray[1]) - 1;
+                        if (taskNumber < 0 || taskNumber > tasks.size()) throw new NoSuchTaskError();
                         System.out.print("    Nice! I've marked this task as done:\n" );
-                        Task doneTask = tasks.get(Integer.parseInt(currentInputArray[1]) - 1);
+                        Task doneTask = tasks.get(taskNumber);
                         doneTask.setDone();
                         System.out.print("    " + doneTask + "\n" );
                         break;
