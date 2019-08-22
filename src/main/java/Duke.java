@@ -32,6 +32,16 @@ public class Duke {
                         doneTask.setDone();
                         System.out.print("      " + doneTask + "\n" );
                         break;
+                    case "delete":
+                        if (currentInputArray.length < 2) throw new InsufficientArgumentError();
+                        if (!currentInputArray[1].matches("-?\\d+")) throw new MissingKeywordError(MissingKeywordError.Keyword.NUMBER);
+                        int deleteTaskNumber = Integer.parseInt(currentInputArray[1]) - 1;
+                        if (deleteTaskNumber < 0 || deleteTaskNumber >= tasks.size()) throw new NoSuchTaskError();
+                        System.out.print("    Noted. I've removed this task:\n" );
+                        System.out.print("      " + tasks.get(deleteTaskNumber) + "\n" );
+                        tasks.remove(deleteTaskNumber);
+                        System.out.print("    Now you have " + tasks.size() + " tasks in the list.\n");
+                        break;
                     case "todo":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
                         Task todo = new Todo(currentInput.substring(5));
