@@ -3,27 +3,36 @@ import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
-        ArrayList<String> text = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         Scanner input = new Scanner(System.in);
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("    Hello! I'm Duke!\n    What can I do for you?");
-        String currentInput = input.nextLine();
+        System.out.print("    Hello! I'm Duke!\n    What can I do for you?\n");
+        String currentInput = input.next();
         while (!currentInput.equals("bye")) {
             if (currentInput.equals("list")) {
+                System.out.print("    Here are the tasks in your list:\n");
                 int i = 1;
-                for (String s : text) {
-                    System.out.println("    " + i++ + ". " + s);
+                for (Task t : tasks) {
+                    System.out.print("    " + i++ + "." + t.getStatement() + "\n");
                 }
+                System.out.print(input.nextLine());
+            } else if (currentInput.equals("done")) {
+                System.out.print("    Nice! I've marked this task as done:\n");
+                Task t = tasks.get(input.nextInt() - 1);
+                t.setDone();
+                System.out.print("    " + t.getStatement() + "\n");
+                input.nextLine();
             } else {
-                System.out.println("    added: " + currentInput);
-                text.add(currentInput);
+                currentInput += input.nextLine();
+                System.out.print("    added: " + currentInput + "\n");
+                tasks.add(new Task(currentInput));
             }
-            currentInput = input.nextLine();
+            currentInput = input.next();
         }
-        System.out.println("    Bye. Hope to see you again soon!");
+        System.out.print("    Bye. Hope to see you again soon!\n");
     }
 }
