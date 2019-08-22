@@ -25,12 +25,12 @@ public class Duke {
                     case "done":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
                         if (!currentInputArray[1].matches("-?\\d+")) throw new MissingKeywordError(MissingKeywordError.Keyword.NUMBER);
-                        int taskNumber = Integer.parseInt(currentInputArray[1]) - 1;
-                        if (taskNumber < 0 || taskNumber > tasks.size()) throw new NoSuchTaskError();
+                        int doneTaskNumber = Integer.parseInt(currentInputArray[1]) - 1;
+                        if (doneTaskNumber < 0 || doneTaskNumber >= tasks.size()) throw new NoSuchTaskError();
                         System.out.print("    Nice! I've marked this task as done:\n" );
-                        Task doneTask = tasks.get(taskNumber);
+                        Task doneTask = tasks.get(doneTaskNumber);
                         doneTask.setDone();
-                        System.out.print("    " + doneTask + "\n" );
+                        System.out.print("      " + doneTask + "\n" );
                         break;
                     case "todo":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
