@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -54,7 +55,9 @@ public class Duke {
                         if (!currentInput.contains(" /by ")) throw new MissingKeywordError(MissingKeywordError.Keyword.BY);
                         String[] deadlineArr = currentInput.split(" /by " );
                         if (deadlineArr.length < 2 || deadlineArr[0].length() < 10) throw new InsufficientArgumentError();
-                        Task deadline = new Deadline(deadlineArr[0].substring(9), deadlineArr[1]);
+                        System.out.print(deadlineArr[1]);
+                        Date deadlineDate = DateTimeParser.parse(deadlineArr[1]);
+                        Task deadline = new Deadline(deadlineArr[0].substring(9), deadlineDate);
                         tasks.add(deadline);
                         System.out.print("    Got it. I've added this task:\n      " + deadline
                                 + "\n    Now you have " + tasks.size() + " tasks in the list.\n" );
@@ -64,7 +67,8 @@ public class Duke {
                         if (!currentInput.contains(" /at ")) throw new MissingKeywordError(MissingKeywordError.Keyword.AT);
                         String[] eventArr = currentInput.split(" /at " );
                         if (eventArr.length < 2 || eventArr[0].length() < 7) throw new InsufficientArgumentError();
-                        Task event = new Event(eventArr[0].substring(6), eventArr[1]);
+                        Date eventDate = DateTimeParser.parse(eventArr[1]);
+                        Task event = new Event(eventArr[0].substring(6), eventDate);
                         tasks.add(event);
                         System.out.print("    Got it. I've added this task:\n      " + event
                                 + "\n    Now you have " + tasks.size() + " tasks in the list.\n" );
