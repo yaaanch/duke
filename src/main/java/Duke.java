@@ -8,11 +8,42 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    private Storage storage;
+    private TaskList tasks;
+    private UI ui;
+
+    public Duke(String filePath) {
+        ui = new UI();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (FileLoadError | IncorrectDateTimeError e) {
+            ui.showError(e);
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e);
+            }
+        }
+        ui.showBye();
+    }
+
     public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
+        /*
         ArrayList<Task> tasks = load();
-        Scanner input = new Scanner(System.in);
-        System.out.print("    Hello! I'm Duke!\n    What can I do for you?\n");
-        String currentInput = input.nextLine();
+
         String[] currentInputArray = currentInput.split("\\s");
         while (!currentInputArray[0].equals("bye")) {
             try {
@@ -93,53 +124,6 @@ public class Duke {
             currentInputArray = currentInput.split("\\s");
         }
         System.out.print("    Bye. Hope to see you again soon!\n");
-    }
-    public static ArrayList<Task> load() {
-        File file = new File("data/duke.txt");
-        ArrayList<Task> tasks = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String data;
-            String[] input;
-            while ((data = br.readLine()) != null) {
-                input = data.split(" \\| ");
-                switch (input[0]) {
-                    case "T":
-                        Todo todo = new Todo(input[2], input[1].equals("1"));
-                        tasks.add(todo);
-                        break;
-                    case "D":
-                        Deadline deadline = new Deadline(input[2], input[1].equals("1"), input[3]);
-                        tasks.add(deadline);
-                        break;
-                    case "E":
-                        Event event = new Event(input[2], input[1].equals("1"), input[3]);
-                        tasks.add(event);
-                        break;
-                    default:
-                        throw new FileLoadError();
-                }
-            }
-        } catch (FileLoadError | FileNotFoundException e) {
-            e.getMessage();
-            return new ArrayList<>();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-        return tasks;
-    }
-
-    public static void save(ArrayList<Task> arr) {
-        Path out = Paths.get("data/duke.txt");
-        ArrayList<String> strings = new ArrayList<>();
-        for(Task t : arr) {
-            strings.add(t.toSave());
-        }
-        try {
-            Files.write(out, strings, Charset.defaultCharset());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        */
     }
 }
