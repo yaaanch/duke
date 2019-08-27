@@ -1,9 +1,14 @@
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
-        ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = load();
         Scanner input = new Scanner(System.in);
         System.out.print("    Hello! I'm Duke!\n    What can I do for you?\n");
         String currentInput = input.nextLine();
@@ -31,6 +36,7 @@ public class Duke {
                         Task doneTask = tasks.get(doneTaskNumber);
                         doneTask.setDone();
                         System.out.print("      " + doneTask + "\n" );
+                        save(tasks);
                         break;
                     case "delete":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
@@ -41,6 +47,7 @@ public class Duke {
                         System.out.print("      " + tasks.get(deleteTaskNumber) + "\n" );
                         tasks.remove(deleteTaskNumber);
                         System.out.print("    Now you have " + tasks.size() + " tasks in the list.\n");
+                        save(tasks);
                         break;
                     case "todo":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
@@ -48,6 +55,7 @@ public class Duke {
                         tasks.add(todo);
                         System.out.print("    Got it. I've added this task:\n      " + todo
                                 + "\n    Now you have " + tasks.size() + " tasks in the list.\n" );
+                        save(tasks);
                         break;
                     case "deadline":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
@@ -58,6 +66,7 @@ public class Duke {
                         tasks.add(deadline);
                         System.out.print("    Got it. I've added this task:\n      " + deadline
                                 + "\n    Now you have " + tasks.size() + " tasks in the list.\n" );
+                        save(tasks);
                         break;
                     case "event":
                         if (currentInputArray.length < 2) throw new InsufficientArgumentError();
@@ -68,6 +77,7 @@ public class Duke {
                         tasks.add(event);
                         System.out.print("    Got it. I've added this task:\n      " + event
                                 + "\n    Now you have " + tasks.size() + " tasks in the list.\n" );
+                        save(tasks);
                         break;
                     default:
                         throw new UnknownCommandError();
@@ -80,5 +90,52 @@ public class Duke {
         }
         System.out.print("    Bye. Hope to see you again soon!\n");
     }
+    public static ArrayList<Task> load() {
+        File file = new File("data/duke.txt");
+        ArrayList<Task> tasks = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String data;
+            String[] input;
+            while ((data = br.readLine()) != null) {
+                input = data.split(" \\| ");
+                switch (input[0]) {
+                    case "T":
+                        Todo todo = new Todo(input[2], input[1].equals("1"));
+                        tasks.add(todo);
+                        break;
+                    case "D":
+                        Deadline deadline = new Deadline(input[2], input[1].equals("1"), input[3]);
+                        tasks.add(deadline);
+                        break;
+                    case "E":
+                        Event event = new Event(input[2], input[1].equals("1"), input[3]);
+                        tasks.add(event);
+                        break;
+                    default:
+                        throw new FileLoadError();
+                }
+            }
+        } catch (FileLoadError | FileNotFoundException e) {
+            e.getMessage();
+            return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+        return tasks;
+    }
 
+    public static void save(ArrayList<Task> arr) {
+        Path out = Paths.get("data/duke.txt");
+        ArrayList<String> strings = new ArrayList<>();
+        for(Task t : arr) {
+            strings.add(t.toSave());
+        }
+        try {
+            Files.write(out, strings, Charset.defaultCharset());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
