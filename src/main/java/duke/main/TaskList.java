@@ -1,3 +1,8 @@
+package duke.main;
+
+import duke.error.NoSuchTaskError;
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {

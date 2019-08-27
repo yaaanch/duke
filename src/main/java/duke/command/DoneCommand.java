@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.error.NoSuchTaskError;
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.UI;
+
 public class DoneCommand extends Command {
     int taskNumber;
     public DoneCommand(int taskNumber) {

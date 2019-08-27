@@ -1,3 +1,5 @@
+package duke.error;
+
 public class MissingKeywordError extends DukeException {
     public enum Keyword {
         NUMBER, BY, AT;

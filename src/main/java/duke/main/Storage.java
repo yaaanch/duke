@@ -1,3 +1,12 @@
+package duke.main;
+
+import duke.error.FileLoadError;
+import duke.error.IncorrectDateTimeError;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -45,7 +54,7 @@ public class Storage {
     }
 
     public void save(TaskList tasks) {
-        Path out = Paths.get("filePath");
+        Path out = Paths.get(filePath);
         try {
             Files.write(out, tasks.toSaveStringList(), Charset.defaultCharset());
         } catch (Exception e){

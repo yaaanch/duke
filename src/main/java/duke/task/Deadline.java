@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.main.DateTimeParser;
+
 import java.util.Date;
 
 public class Deadline extends Task {
@@ -20,6 +24,6 @@ public class Deadline extends Task {
     }
 
     public String toSave() {
-        return "D | " + (super.isDone ? 1 : 0) + " | " + super.description + " | " + by;
+        return "D | " + (super.isDone ? 1 : 0) + " | " + super.description + " | " + DateTimeParser.format(by);
     }
 }

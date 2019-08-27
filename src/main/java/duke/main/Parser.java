@@ -1,3 +1,11 @@
+package duke.main;
+
+import duke.command.*;
+import duke.error.DukeException;
+import duke.error.InsufficientArgumentError;
+import duke.error.MissingKeywordError;
+import duke.error.UnknownCommandError;
+
 import java.util.Date;
 
 public class Parser {

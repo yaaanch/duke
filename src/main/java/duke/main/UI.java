@@ -1,3 +1,8 @@
+package duke.main;
+
+import duke.error.DukeException;
+import duke.task.Task;
+
 import java.util.Scanner;
 
 public class UI {

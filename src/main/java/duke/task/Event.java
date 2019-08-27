@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.main.DateTimeParser;
+
 import java.util.Date;
 
 public class Event extends Task {
@@ -19,6 +23,6 @@ public class Event extends Task {
     }
 
     public String toSave() {
-        return "E | " + (super.isDone ? 1 : 0) + " | " + super.description + " | " + at;
+        return "E | " + (super.isDone ? 1 : 0) + " | " + super.description + " | " + DateTimeParser.format(at);
     }
 }
