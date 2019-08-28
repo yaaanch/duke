@@ -57,7 +57,7 @@ public class Storage {
         Path out = Paths.get(filePath);
         if (Files.notExists(out)) {
             try {
-                if(!Files.exists(out.getParent()))
+                if (!Files.exists(out.getParent()))
                     Files.createDirectories(out.getParent());
                 Files.createFile(out);
             } catch (IOException e) {
