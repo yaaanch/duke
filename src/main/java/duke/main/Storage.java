@@ -55,6 +55,15 @@ public class Storage {
 
     public void save(TaskList tasks) {
         Path out = Paths.get(filePath);
+        if (Files.notExists(out)) {
+            try {
+                if(!Files.exists(out.getParent()))
+                    Files.createDirectories(out.getParent());
+                Files.createFile(out);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
             Files.write(out, tasks.toSaveStringList(), Charset.defaultCharset());
         } catch (Exception e) {
