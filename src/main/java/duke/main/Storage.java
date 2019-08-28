@@ -31,20 +31,20 @@ public class Storage {
             while ((data = br.readLine()) != null) {
                 input = data.split(" \\| ");
                 switch (input[0]) {
-                    case "T":
-                        Todo todo = new Todo(input[2], input[1].equals("1"));
-                        tasks.add(todo);
-                        break;
-                    case "D":
-                        Deadline deadline = new Deadline(input[2], input[1].equals("1"), DateTimeParser.parse(input[3]));
-                        tasks.add(deadline);
-                        break;
-                    case "E":
-                        Event event = new Event(input[2], input[1].equals("1"), DateTimeParser.parse(input[3]));
-                        tasks.add(event);
-                        break;
-                    default:
-                        throw new FileLoadError();
+                case "T":
+                    Todo todo = new Todo(input[2], input[1].equals("1"));
+                    tasks.add(todo);
+                    break;
+                case "D":
+                    Deadline deadline = new Deadline(input[2], input[1].equals("1"), DateTimeParser.parse(input[3]));
+                    tasks.add(deadline);
+                    break;
+                case "E":
+                    Event event = new Event(input[2], input[1].equals("1"), DateTimeParser.parse(input[3]));
+                    tasks.add(event);
+                    break;
+                default:
+                    throw new FileLoadError();
                 }
             }
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class Storage {
         Path out = Paths.get(filePath);
         try {
             Files.write(out, tasks.toSaveStringList(), Charset.defaultCharset());
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

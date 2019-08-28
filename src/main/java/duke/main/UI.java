@@ -37,7 +37,7 @@ public class UI {
         print("You have no tasks in your list.");
     }
 
-    public void showTaskList(TaskList tasks){
+    public void showTaskList(TaskList tasks) {
         print("Here are the tasks in your list:");
         for (String s : tasks.toUIStringList()) {
             print(s);
@@ -45,12 +45,12 @@ public class UI {
     }
 
     public void showDoneTask(Task task) {
-        print("Nice! I've marked this task as done:" );
+        print("Nice! I've marked this task as done:");
         print(task.toString());
     }
 
     public void showDeleteTask(Task task, int size) {
-        print("Noted. I've removed this task:" );
+        print("Noted. I've removed this task:");
         print(task.toString());
         print("Now you have " + size + " tasks in the list.");
     }
