@@ -37,6 +37,10 @@ public class UI {
         print("You have no tasks in your list.");
     }
 
+    public void showNoFindTasks() {
+        print("You have no tasks with that keyword in your lists.");
+    }
+
     public void showTaskList(TaskList tasks) {
         print("Here are the tasks in your list:");
         for (String s : tasks.toUIStringList()) {
@@ -59,5 +63,12 @@ public class UI {
         print("Got it. I've added this task:");
         print(task.toString());
         print("Now you have " + size + " tasks in the list.");
+    }
+
+    public void showFindTaskList(TaskList tasks) {
+        print("Here are the matching tasks in your list:");
+        for (String s : tasks.toUIStringList()) {
+            print(s);
+        }
     }
 }

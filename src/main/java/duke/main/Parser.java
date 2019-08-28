@@ -45,6 +45,9 @@ public class Parser {
             return new EventCommand(eventArr[0].substring(6), eventDate);
         case "bye":
             return new ExitCommand();
+        case "find":
+            if (currentInputArray.length < 2) throw new InsufficientArgumentError();
+            return new FindCommand(currentInputArray[1]);
         default:
             throw new UnknownCommandError();
         }
