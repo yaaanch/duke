@@ -63,4 +63,14 @@ public class TaskList {
         tasks.add(task);
         return task;
     }
+
+    public TaskList find(String searchTerm) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task t : tasks) {
+            if (t.getDescription().contains(searchTerm)) {
+                foundTasks.add(t);
+            }
+        }
+        return new TaskList(foundTasks);
+    }
 }
