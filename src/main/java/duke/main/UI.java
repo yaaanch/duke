@@ -5,10 +5,10 @@ import duke.task.Task;
 
 import java.util.Scanner;
 
-public class UI {
-    Scanner input;
+public class Ui {
+    private Scanner input;
 
-    public UI() {
+    public Ui() {
         input = new Scanner(System.in);
     }
 
@@ -16,20 +16,20 @@ public class UI {
         System.out.print("    " + s + "\n");
     }
 
-    public void showError(DukeException d) {
+    void showError(DukeException d) {
         print(d.getMessage());
     }
 
-    public void showWelcome() {
+    void showWelcome() {
         print("Hello! I'm Duke!");
         print("What can I do for you?");
     }
 
-    public void showBye() {
+    void showBye() {
         print("Bye. Hope to see you again soon!");
     }
 
-    public String readCommand() {
+    String readCommand() {
         return input.nextLine();
     }
 
@@ -43,7 +43,7 @@ public class UI {
 
     public void showTaskList(TaskList tasks) {
         print("Here are the tasks in your list:");
-        for (String s : tasks.toUIStringList()) {
+        for (String s : tasks.toUiStringList()) {
             print(s);
         }
     }
@@ -67,7 +67,7 @@ public class UI {
 
     public void showFindTaskList(TaskList tasks) {
         print("Here are the matching tasks in your list:");
-        for (String s : tasks.toUIStringList()) {
+        for (String s : tasks.toUiStringList()) {
             print(s);
         }
     }

@@ -3,7 +3,7 @@ package duke.command;
 import duke.error.DukeException;
 import duke.main.Storage;
 import duke.main.TaskList;
-import duke.main.UI;
+import duke.main.Ui;
 
 public class FindCommand extends Command {
     private String searchTerm;
@@ -13,7 +13,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList foundTasks = tasks.find(searchTerm);
         if (foundTasks.isEmpty()) {
             ui.showNoFindTasks();

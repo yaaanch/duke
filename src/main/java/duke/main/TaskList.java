@@ -24,7 +24,7 @@ public class TaskList {
         return tasks.size();
     }
 
-    public ArrayList<String> toUIStringList() {
+    ArrayList<String> toUiStringList() {
         int i = 1;
         ArrayList<String> result = new ArrayList<>();
         for (Task t : tasks) {
@@ -37,7 +37,7 @@ public class TaskList {
         return result;
     }
 
-    public ArrayList<String> toSaveStringList() {
+    ArrayList<String> toSaveStringList() {
         ArrayList<String> strings = new ArrayList<>();
         for (Task t : tasks) {
             strings.add(t.toSave());
@@ -46,14 +46,18 @@ public class TaskList {
     }
 
     public Task doTask(int taskNumber) throws NoSuchTaskError {
-        if (taskNumber < 0 || taskNumber >= tasks.size()) throw new NoSuchTaskError();
+        if (taskNumber < 0 || taskNumber >= tasks.size()) {
+            throw new NoSuchTaskError();
+        }
         Task doneTask = tasks.get(taskNumber);
         doneTask.setDone();
         return doneTask;
     }
 
     public Task deleteTask(int taskNumber) throws NoSuchTaskError {
-        if (taskNumber < 0 || taskNumber >= tasks.size()) throw new NoSuchTaskError();
+        if (taskNumber < 0 || taskNumber >= tasks.size()) {
+            throw new NoSuchTaskError();
+        }
         Task deleted = tasks.get(taskNumber);
         tasks.remove(taskNumber);
         return deleted;
