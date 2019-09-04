@@ -13,8 +13,8 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws NoSuchTaskError {
-        ui.showDoneTask(tasks.doTask(taskNumber));
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws NoSuchTaskError {
         storage.save(tasks);
+        return ui.showDoneTask(tasks.doTask(taskNumber));
     }
 }

@@ -6,11 +6,10 @@ import duke.main.Ui;
 
 public class ListCommand extends Command {
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.isEmpty()) {
-            ui.showNoTasks();
-            return;
+            return ui.showNoTasks();
         }
-        ui.showTaskList(tasks);
+        return ui.showTaskList(tasks);
     }
 }

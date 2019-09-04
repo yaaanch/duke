@@ -12,63 +12,63 @@ public class Ui {
         input = new Scanner(System.in);
     }
 
-    private void print(String s) {
-        System.out.print("    " + s + "\n");
+    private String print(String s) {
+        return "    " + s + "\n";
     }
 
-    void showError(DukeException d) {
-        print(d.getMessage());
+    public String showError(DukeException d) {
+        return print(d.getMessage());
     }
 
-    void showWelcome() {
-        print("Hello! I'm Duke!");
-        print("What can I do for you?");
+    public String showWelcome() {
+        return print("Hello! I'm Duke!") + print("What can I do for you?");
     }
 
-    void showBye() {
-        print("Bye. Hope to see you again soon!");
+    public String showBye() {
+        return print("Bye. Hope to see you again soon!");
     }
 
     String readCommand() {
         return input.nextLine();
     }
 
-    public void showNoTasks() {
-        print("You have no tasks in your list.");
+    public String showNoTasks() {
+        return print("You have no tasks in your list.");
     }
 
-    public void showNoFindTasks() {
-        print("You have no tasks with that keyword in your lists.");
+    public String showNoFindTasks() {
+        return print("You have no tasks with that keyword in your lists.");
     }
 
-    public void showTaskList(TaskList tasks) {
-        print("Here are the tasks in your list:");
+    public String showTaskList(TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(print("Here are the tasks in your list:"));
         for (String s : tasks.toUiStringList()) {
-            print(s);
+            sb.append(print(s));
         }
+        return sb.toString();
     }
 
-    public void showDoneTask(Task task) {
-        print("Nice! I've marked this task as done:");
-        print(task.toString());
+    public String showDoneTask(Task task) {
+        return print("Nice! I've marked this task as done:") + print(task.toString());
     }
 
-    public void showDeleteTask(Task task, int size) {
-        print("Noted. I've removed this task:");
-        print(task.toString());
-        print("Now you have " + size + " tasks in the list.");
+    public String showDeleteTask(Task task, int size) {
+        return print("Noted. I've removed this task:") + print(task.toString())
+                + print("Now you have " + size + " tasks in the list.");
     }
 
-    public void showAddTask(Task task, int size) {
-        print("Got it. I've added this task:");
-        print(task.toString());
-        print("Now you have " + size + " tasks in the list.");
+    public String showAddTask(Task task, int size) {
+        return print("Got it. I've added this task:") + print(task.toString())
+                + print("Now you have " + size + " tasks in the list.");
     }
 
-    public void showFindTaskList(TaskList tasks) {
-        print("Here are the matching tasks in your list:");
+    public String showFindTaskList(TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(print("Here are the matching tasks in your list:"));
         for (String s : tasks.toUiStringList()) {
-            print(s);
+            sb.append(print(s));
         }
+        return sb.toString();
     }
 }
