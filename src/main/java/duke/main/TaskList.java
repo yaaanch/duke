@@ -51,6 +51,7 @@ public class TaskList {
         }
         Task doneTask = tasks.get(taskNumber);
         doneTask.setDone();
+        assert(doneTask.isDone());
         return doneTask;
     }
 
@@ -65,6 +66,7 @@ public class TaskList {
 
     public Task addTask(Task task) {
         tasks.add(task);
+        assert(tasks.size() > 0);
         return task;
     }
 
