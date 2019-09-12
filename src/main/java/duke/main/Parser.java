@@ -1,15 +1,6 @@
 package duke.main;
 
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.EventCommand;
-import duke.command.ExitCommand;
-import duke.command.HelpCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.TodoCommand;
+import duke.command.*;
 import duke.error.DukeException;
 import duke.error.InsufficientArgumentError;
 import duke.error.MissingKeywordError;
@@ -25,6 +16,10 @@ public class Parser {
             return new ListCommand();
         case "help":
             return new HelpCommand();
+        case "archive":
+            return new ArchiveCommand();
+        case "view" :
+            return new ViewArchiveCommand();
         case "done":
             if (currentInputArray.length < 2) {
                 throw new MissingKeywordError(MissingKeywordError.Keyword.NUMBER);

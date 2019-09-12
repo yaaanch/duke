@@ -13,7 +13,7 @@ public class Ui {
     }
 
     private String print(String s) {
-        return "    " + s + "\n";
+        return s + "\n";
     }
 
     public String showError(DukeException d) {
@@ -41,8 +41,11 @@ public class Ui {
         sb.append(print("deadline <description> /by <dd/mm/yyyy hhmm> -" +
                 " Creates a deadline with a description to be completed by a certain time."));
         sb.append(print(""));
-        sb.append(print("delete <description> - Deletes the task with the same description."));
-        sb.append(print("done <description> - Completes the task with the same description."));
+        sb.append(print("delete <index> - Deletes the task of that index."));
+        sb.append(print("done <index> - Completes the task of that index."));
+        sb.append(print(""));
+        sb.append(print("archive - Archives all tasks."));
+        sb.append(print("view - View all archived tasks."));
         sb.append(print(""));
         sb.append(print("bye - Exits the program."));
         return sb.toString();
@@ -86,6 +89,15 @@ public class Ui {
     public String showFindTaskList(TaskList tasks) {
         StringBuilder sb = new StringBuilder();
         sb.append(print("Here are the matching tasks in your list:"));
+        for (String s : tasks.toUiStringList()) {
+            sb.append(print(s));
+        }
+        return sb.toString();
+    }
+
+    public String showArchived(TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(print("You have archived these tasks:"));
         for (String s : tasks.toUiStringList()) {
             sb.append(print(s));
         }

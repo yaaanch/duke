@@ -15,9 +15,9 @@ public class Duke {
     public Duke() {
     }
 
-    public Duke(String filePath) {
+    public Duke(String savePath, String archivePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(savePath, archivePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (FileLoadError | IncorrectDateTimeError e) {
@@ -57,6 +57,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        new Duke("data/tasks.txt", "data/archive.txt").run();
     }
 }

@@ -79,4 +79,8 @@ public class TaskList {
         }
         return new TaskList(foundTasks);
     }
+
+    public void clear() {
+        tasks.clear();
+    }
 }

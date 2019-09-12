@@ -15,17 +15,20 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class Storage {
-    private String filePath;
+    private String savePath;
+    private String archivePath;
 
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage(String savePath, String archivePath) {
+        this.savePath = savePath;
+        this.archivePath = archivePath;
     }
 
-    ArrayList<Task> load() throws FileLoadError, IncorrectDateTimeError {
-        File file = new File(filePath);
+    private ArrayList<Task> fromFile(String path) throws FileLoadError, IncorrectDateTimeError {
+        File file = new File(path);
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -57,7 +60,7 @@ public class Storage {
     }
 
     public void save(TaskList tasks) {
-        Path out = Paths.get(filePath);
+        Path out = Paths.get(savePath);
         if (Files.notExists(out)) {
             try {
                 if (!Files.exists(out.getParent())) {
@@ -73,5 +76,34 @@ public class Storage {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void archive(TaskList tasks) {
+        Path out = Paths.get(archivePath);
+        if (Files.notExists(out)) {
+            try {
+                if (!Files.exists(out.getParent())) {
+                    Files.createDirectories(out.getParent());
+                }
+                Files.createFile(out);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            Files.write(out, tasks.toSaveStringList(), Charset.defaultCharset(), StandardOpenOption.APPEND);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        tasks.clear();
+        save(tasks);
+    }
+
+    public ArrayList<Task> load() throws IncorrectDateTimeError, FileLoadError {
+        return fromFile(savePath);
+    }
+
+    public TaskList getArchive() throws IncorrectDateTimeError, FileLoadError {
+        return new TaskList(fromFile(archivePath));
     }
 }

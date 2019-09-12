@@ -1,0 +1,4 @@
+T | 1 | dance
+T | 0 | fly
+T | 1 | run
+T | 0 | walk
