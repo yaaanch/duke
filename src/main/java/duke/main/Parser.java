@@ -6,6 +6,7 @@ import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.HelpCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.TodoCommand;
@@ -22,6 +23,8 @@ public class Parser {
         switch (currentInputArray[0]) {
         case "list":
             return new ListCommand();
+        case "help":
+            return new HelpCommand();
         case "done":
             if (currentInputArray.length < 2) {
                 throw new MissingKeywordError(MissingKeywordError.Keyword.NUMBER);

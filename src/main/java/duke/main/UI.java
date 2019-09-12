@@ -28,6 +28,26 @@ public class Ui {
         return print("Bye. Hope to see you again soon!");
     }
 
+    public String showHelp() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(print("There are the following commands:"));
+        sb.append(print("help - This command."));
+        sb.append(print("list - Lists all your existing tasks."));
+        sb.append(print("find <description> - Finds a task which contains the description."));
+        sb.append(print(""));
+        sb.append(print("todo <description> - Creates a to-do item with a description."));
+        sb.append(print("event <description> /at <dd/mm/yyyy hhmm> -" +
+                " Creates an event with a description at a certain time."));
+        sb.append(print("deadline <description> /by <dd/mm/yyyy hhmm> -" +
+                " Creates a deadline with a description to be completed by a certain time."));
+        sb.append(print(""));
+        sb.append(print("delete <description> - Deletes the task with the same description."));
+        sb.append(print("done <description> - Completes the task with the same description."));
+        sb.append(print(""));
+        sb.append(print("bye - Exits the program."));
+        return sb.toString();
+    }
+
     String readCommand() {
         return input.nextLine();
     }

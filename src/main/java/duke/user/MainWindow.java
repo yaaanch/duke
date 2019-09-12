@@ -2,14 +2,15 @@ package duke.user;
 
 import duke.command.ExitCommandEvent;
 import duke.main.Duke;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -47,13 +48,17 @@ public class MainWindow extends AnchorPane {
             String input = userInput.getText();
             String response = duke.getResponse(input);
             dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeImage)
+                    new Group(DialogBox.getUserDialog(input, userImage)),
+                    new Group(DialogBox.getDukeDialog(response, dukeImage))
             );
             userInput.clear();
         } catch (ExitCommandEvent e) {
-            Platform.exit();
-            System.exit(0);
+            dialogContainer.getChildren().addAll(
+                    new Group(DialogBox.getUserDialog("bye", userImage)),
+                    new Group(DialogBox.getDukeDialog("Bye. Hope to see you again soon!", dukeImage))
+            );
+            userInput.clear();
+            new TimedExit();
         }
     }
 }
