@@ -7,7 +7,6 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -26,8 +25,8 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+//    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+//    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
     @FXML
     public void initialize() {
@@ -48,14 +47,14 @@ public class MainWindow extends AnchorPane {
             String input = userInput.getText();
             String response = duke.getResponse(input);
             dialogContainer.getChildren().addAll(
-                    new Group(DialogBox.getUserDialog(input, userImage)),
-                    new Group(DialogBox.getDukeDialog(response, dukeImage))
+                    new Group(UserBox.getUserDialog(input)),
+                    new Group(QBox.getQDialog(response))
             );
             userInput.clear();
         } catch (ExitCommandEvent e) {
             dialogContainer.getChildren().addAll(
-                    new Group(DialogBox.getUserDialog("bye", userImage)),
-                    new Group(DialogBox.getDukeDialog("Bye. Hope to see you again soon!", dukeImage))
+                    new Group(UserBox.getUserDialog("bye")),
+                    new Group(QBox.getQDialog("Bye. Hope to see you again soon!"))
             );
             userInput.clear();
             new TimedExit();

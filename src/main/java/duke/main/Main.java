@@ -4,8 +4,11 @@ import duke.user.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -23,6 +26,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("Q");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icon.png")));
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
