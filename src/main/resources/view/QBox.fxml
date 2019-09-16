@@ -12,5 +12,9 @@
     <stylesheets>
         <URL value="@styles.css"/>
     </stylesheets>
-    <Label fx:id="dialog" text="Label" wrapText="true" styleClass="q"/>
+    <Label fx:id="dialog" text="Label" wrapText="true" styleClass="q">
+        <HBox.margin>
+            <Insets top="10" left="10"/>
+        </HBox.margin>
+    </Label>
 </fx:root>

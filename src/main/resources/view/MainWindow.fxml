@@ -22,7 +22,7 @@
     <stylesheets>
         <URL value="@styles.css"/>
     </stylesheets>
-    <StackPane alignment="CENTER_LEFT" prefHeight="200" prefWidth="1000">
+    <StackPane fx:id="header" alignment="CENTER_LEFT" prefHeight="200" prefWidth="1000">
         <VBox styleClass="header" prefHeight="200" prefWidth="1000" alignment="CENTER">
             <VBox prefHeight="120" prefWidth="1000" alignment="BOTTOM_RIGHT" spacing="10">
                 <HBox prefHeight="50" prefWidth="1000" alignment="BOTTOM_RIGHT">
@@ -45,7 +45,7 @@
                 </Button>
             </HBox>
         </VBox>
-        <HBox prefHeight="150" prefWidth="150" maxHeight="150" alignment="TOP_LEFT">
+        <HBox prefHeight="150" prefWidth="150" maxHeight="150" alignment="TOP_LEFT" mouseTransparent="true">
             <Region prefWidth="50" prefHeight="50"/>
             <Button prefWidth="76" prefHeight="125" styleClass="Q"/>
         </HBox>

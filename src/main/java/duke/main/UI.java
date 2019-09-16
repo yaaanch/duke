@@ -36,10 +36,11 @@ public class Ui {
         sb.append(print("find <description> - Finds a task which contains the description."));
         sb.append(print(""));
         sb.append(print("todo <description> - Creates a to-do item with a description."));
-        sb.append(print("event <description> /at <dd/mm/yyyy hhmm> -" +
+        sb.append(print("event <description> /at <date and time> -" +
                 " Creates an event with a description at a certain time."));
-        sb.append(print("deadline <description> /by <dd/mm/yyyy hhmm> -" +
+        sb.append(print("deadline <description> /by <date and time> -" +
                 " Creates a deadline with a description to be completed by a certain time."));
+        sb.append(print("Examples of <date and time>: tomorrow morning, next Mon night, two Tuesdays from now."));
         sb.append(print(""));
         sb.append(print("delete <index> - Deletes the task of that index."));
         sb.append(print("done <index> - Completes the task of that index."));
