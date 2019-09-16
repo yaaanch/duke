@@ -15,11 +15,12 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
+    compile fileTree(dir: 'lib', include: ['*.jar'])
 }
 
 application {
     // Change this to your main class.
-    mainClassName = "duke.main.Duke"
+    mainClassName = "duke.main.Launcher"
 }
 
 test {

@@ -4,7 +4,6 @@ import duke.command.Command;
 import duke.command.ExitCommandEvent;
 import duke.error.DukeException;
 import duke.error.FileLoadError;
-import duke.error.IncorrectDateTimeError;
 
 public class Duke {
     private Storage storage;
@@ -20,7 +19,7 @@ public class Duke {
         storage = new Storage(savePath, archivePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (FileLoadError | IncorrectDateTimeError e) {
+        } catch (FileLoadError e) {
             ui.showError(e);
             tasks = new TaskList();
         }
