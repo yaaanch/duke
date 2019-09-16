@@ -1,7 +1,6 @@
 package duke.main;
 
 import duke.error.FileLoadError;
-import duke.error.IncorrectDateTimeError;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -27,7 +26,7 @@ public class Storage {
         this.archivePath = archivePath;
     }
 
-    private ArrayList<Task> fromFile(String path) throws FileLoadError, IncorrectDateTimeError {
+    private ArrayList<Task> fromFile(String path) throws FileLoadError {
         File file = new File(path);
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -99,11 +98,11 @@ public class Storage {
         save(tasks);
     }
 
-    public ArrayList<Task> load() throws IncorrectDateTimeError, FileLoadError {
+    public ArrayList<Task> load() throws FileLoadError {
         return fromFile(savePath);
     }
 
-    public TaskList getArchive() throws IncorrectDateTimeError, FileLoadError {
+    public TaskList getArchive() throws FileLoadError {
         return new TaskList(fromFile(archivePath));
     }
 }

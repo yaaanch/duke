@@ -2,3 +2,7 @@ T | 1 | dance
 T | 0 | fly
 T | 1 | run
 T | 0 | walk
+D | 0 | hi | 20/09/2019 2223
+D | 0 | dance | 20/09/2019 2223
+D | 0 | iP | 19/09/2019 2223
+D | 0 | take antibiotics | 16/09/2019 2000
