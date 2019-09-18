@@ -1,5 +1,7 @@
 package q.user;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import q.command.ExitCommandEvent;
 import q.main.Q;
 import javafx.animation.PathTransition;
@@ -61,6 +63,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Binds a Q to the MainWindow.
+     *
      * @param q The Q to be binded.
      */
     public void setBindedQ(Q q) {
@@ -118,8 +121,7 @@ public class MainWindow extends AnchorPane {
         Path path = new Path();
         path.getElements().add(new MoveTo(-40, -20 - random.nextDouble() * 100));
         path.getElements().add(new CubicCurveTo(300 + random.nextDouble() * 900,
-                0, random.nextDouble() * 300, 120, 200, 120));
-        path.getElements().add(new CubicCurveTo(0, 120 + random.nextDouble() * 200, 0, 240, 380, 240));
+                0, random.nextDouble() * 800, 120, 50 + random.nextDouble() * 600, 160));
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.millis(random.nextDouble() * 2000 + 1500));
         pathTransition.setPath(path);
@@ -127,5 +129,6 @@ public class MainWindow extends AnchorPane {
         pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pathTransition.setCycleCount(1 + random.nextInt(3));
         pathTransition.play();
+        pathTransition.setOnFinished(x -> header.getChildren().remove(fish));
     }
 }
