@@ -4,6 +4,7 @@ import q.error.QException;
 import q.main.Storage;
 import q.main.TaskList;
 import q.main.Ui;
+import q.task.Task;
 
 /**
  * Handles deletion.
@@ -29,7 +30,8 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws QException {
+        Task t = tasks.deleteTask(taskNumber);
         storage.save(tasks);
-        return ui.showDeleteTask(tasks.deleteTask(taskNumber), tasks.getSize());
+        return ui.showDeleteTask(t, tasks.getSize());
     }
 }

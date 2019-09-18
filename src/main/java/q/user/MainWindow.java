@@ -89,7 +89,7 @@ public class MainWindow extends AnchorPane {
         } catch (ExitCommandEvent e) {
             dialogContainer.getChildren().addAll(
                     new Group(UserBox.getUserDialog("bye")),
-                    new Group(QBox.getQDialog("Bye. Hope to see you again soon!"))
+                    new Group(QBox.getQDialog("Good riddance."))
             );
             userInput.clear();
             new TimedExit();

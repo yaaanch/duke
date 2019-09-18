@@ -4,6 +4,7 @@ import q.error.NoSuchTaskError;
 import q.main.Storage;
 import q.main.TaskList;
 import q.main.Ui;
+import q.task.Task;
 
 /**
  * Handles the marking of Tasks as done.
@@ -31,7 +32,8 @@ public class DoneCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws NoSuchTaskError {
+        Task t = tasks.doTask(taskNumber);
         storage.save(tasks);
-        return ui.showDoneTask(tasks.doTask(taskNumber));
+        return ui.showDoneTask(t);
     }
 }

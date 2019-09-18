@@ -57,11 +57,11 @@ public class Storage {
                     tasks.add(todo);
                     break;
                 case "D":
-                    Deadline deadline = new Deadline(input[2], input[1].equals("1"), DateTimeParser.parse(input[3]));
+                    Deadline deadline = new Deadline(input[2], input[1].equals("1"), DateTimeParser.parseFromFile(input[3]));
                     tasks.add(deadline);
                     break;
                 case "E":
-                    Event event = new Event(input[2], input[1].equals("1"), DateTimeParser.parse(input[3]));
+                    Event event = new Event(input[2], input[1].equals("1"), DateTimeParser.parseFromFile(input[3]));
                     tasks.add(event);
                     break;
                 default:

@@ -2,7 +2,9 @@ package q.main;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
+import q.error.FileLoadError;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -35,5 +37,15 @@ public class DateTimeParser {
     public static String format(Date d) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
         return formatter.format(d);
+    }
+
+    public static Date parseFromFile(String s) throws FileLoadError {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        try {
+            Date date = formatter.parse(s);
+            return date;
+        } catch (ParseException e) {
+            throw new FileLoadError();
+        }
     }
 }
