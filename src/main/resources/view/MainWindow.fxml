@@ -13,12 +13,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.layout.StackPane?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0"
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="duke.user.MainWindow">
+            fx:controller="q.user.MainWindow">
     <stylesheets>
         <URL value="@styles.css"/>
     </stylesheets>
@@ -26,7 +24,7 @@
         <VBox styleClass="header" prefHeight="200" prefWidth="1000" alignment="CENTER">
             <VBox prefHeight="120" prefWidth="1000" alignment="BOTTOM_RIGHT" spacing="10">
                 <HBox prefHeight="50" prefWidth="1000" alignment="BOTTOM_RIGHT">
-                    <Text styleClass="header-text" text="I'm here to help you out, or whatever..."/>
+                    <Text fx:id="headerText" styleClass="header-text" text="I'm Q. Yes...?"/>
                     <Region prefHeight="50" prefWidth="50"/>
                 </HBox>
             </VBox>
