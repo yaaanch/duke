@@ -112,17 +112,17 @@
 .q {
     -fx-font-size: 18;
     -fx-font-family: 'Aileron';
-    -fx-background-color: #f9bfc1;
-    -fx-padding: 10 10 10 10;
-    -fx-text-fill: black;
-    -fx-background-radius: 15;
+    -fx-background-color: #9670b1;
+    -fx-padding: 10 15 10 15;
+    -fx-text-fill: white;
+    -fx-background-radius: 25;
 }
 
 .user {
     -fx-font-size: 18;
     -fx-font-family: 'Aileron';
-    -fx-background-color: #9670b1;
-    -fx-padding: 10 10 10 10;
+    -fx-background-color: #767878;
+    -fx-padding: 10 15 10 15;
     -fx-text-fill: white;
-    -fx-background-radius: 15;
+    -fx-background-radius: 25;
 }
