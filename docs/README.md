@@ -1,30 +1,13 @@
 # User Guide
 
-sb.append(print("help - This command. You couldn't figure that out?"));
-        sb.append(print("list - Lists all your existing tasks."));
-        sb.append(print("find <description> - Finds a task which contains the description."));
-        sb.append(print(""));
-        sb.append(print("todo <description> - Creates a to-do item with a description."));
-        sb.append(print("event <description> /at <date and time> -"
-                + " Creates an event with a description at a certain time."));
-        sb.append(print("deadline <description> /by <date and time> -"
-                + " Creates a deadline with a description to be completed by a certain time."));
-        sb.append(print("Examples of <date and time>: tomorrow morning, next Mon night, two Tuesdays from now."));
-        sb.append(print(""));
-        sb.append(print("delete <index> - Deletes the task of that index."));
-        sb.append(print("done <index> - Completes the task of that index."));
-        sb.append(print(""));
-        sb.append(print("archive - Archives all tasks."));
-        sb.append(print("view - View all archived tasks."));
-        sb.append(print(""));
-        sb.append(print("bye - Exits the program."));
-		
 ## Features 
 
 ### Help
 Provides a description of all functions that can be used and how to use them. 
 
 #### Usage
+
+Example usage:
 
 `help`
 
@@ -49,102 +32,165 @@ view - View all archived tasks.
 bye - Exits the program.
 ```
 
-### Feature 1 
-Description of feature.
+### List 
+Lists all existing tasks.
 
-### `Keyword` - Describe action
+#### Usage
 
-Describe action and its outcome.
+Example usage:
 
-Example of usage: 
-
-`keyword (optional arguments)`
+`list`
 
 Expected outcome:
 
-`outcome`
+```
+Fine. I'll tell you the tasks in your list:
+1.[D][✓] submission for iP (by: 18/09/2019 2359)
+2.[E][✘] team meeting (at: 20/09/2019 1930)
+3.[T][✘] take the subway
+```
 
-### Feature 1 
-Description of feature.
+### Find
+Searches the description of all tasks and gives a list of tasks containing the search term.
 
-## Usage
+#### Usage
 
-### `Keyword` - Describe action
+Example usage:
 
-Describe action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-`outcome`
-
-### Feature 1 
-Description of feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
+`find sub`
 
 Expected outcome:
 
-`outcome`
+```
+I guess I'll give you the matching tasks...
+1.[D][✓] submission for iP (by: 18/09/2019 2359)
+2.[T][✘] take the subway
+```
 
-### Feature 1 
-Description of feature.
+### Todo
+Adds a Todo task. A Todo task has only a description.
 
-## Usage
+#### Usage
 
-### `Keyword` - Describe action
+Example usage:
 
-Describe action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-`outcome`
-
-### Feature 1 
-Description of feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
+`todo take the subway`
 
 Expected outcome:
 
-`outcome`
+```
+Added this:
+[T][✘] take the subway
+3 tasks left. Finish them quickly!
+```
 
-### Feature 1 
-Description of feature.
+### Event
+Adds a Event task. A Event task has a description and the date of the Event. 
 
-## Usage
+#### Usage
 
-### `Keyword` - Describe action
+Example usage:
 
-Describe action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
+`event team meeting next Fri 730 p.m.`
 
 Expected outcome:
 
-`outcome`
+```
+Added this:
+[E][✘] team meeting (at: 20/09/2019 1930)
+3 tasks left. Finish them quickly!
+```
+
+### Deadline
+Adds a Deadline task. A Event task has a description and the date of the Deadline. 
+
+#### Usage
+
+Example usage:
+
+`deadline submission for iP /by wed 2359`
+
+Expected outcome:
+
+```
+Added this:
+[D][✘] submission for iP (by: 18/09/2019 2359)
+3 tasks left. Finish them quickly!
+```
+
+### Delete
+Deletes a task based on a task number.
+
+#### Usage
+
+Example usage:
+
+`delete 10`
+
+Expected outcome:
+
+```
+Okay. Got rid of it.
+[D][✘] submission for iP (by: 18/09/2019 2359)
+You have 9 tasks left.
+```
+
+### Done
+Marks a task as done based on a task number.
+
+#### Usage
+
+Example usage:
+
+`done 1`
+
+Expected outcome:
+
+```
+Took you long enough. It's done:
+[D][✘] submission for iP (by: 18/09/2019 2359)
+```
+
+### Archive
+Removes everything from your current task lists and archives it. 
+
+#### Usage
+
+Example usage:
+
+`archive`
+
+Expected outcome:
+
+```
+What you've archived is here:
+1.[D][✓] submission for iP (by: 18/09/2019 2359)
+2.[E][✘] team meeting (at: 20/09/2019 1930)
+3.[T][✘] take the subway
+```
+
+Afterwards:
+```
+list
+```
+```
+This is strange, but you have no tasks in your list.
+```
+
+### View
+Views your archived tasks.
+
+#### Usage
+
+Example usage:
+
+`view`
+
+Expected outcome:
+
+```
+What you've archived is here:
+1.[D][✓] submission for iP (by: 18/09/2019 2359)
+2.[E][✘] team meeting (at: 20/09/2019 1930)
+3.[T][✘] take the subway
+```

@@ -39,6 +39,12 @@ public class DateTimeParser {
         return formatter.format(d);
     }
 
+    /**
+     * Parses a string in the format dd/MM/yyyy HHmm.
+     * @param s A string in the format dd/MM/yyyy HHmm.
+     * @return A Date.
+     * @throws FileLoadError If the string is not in the right format.
+     */
     public static Date parseFromFile(String s) throws FileLoadError {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
         try {

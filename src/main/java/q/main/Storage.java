@@ -57,7 +57,8 @@ public class Storage {
                     tasks.add(todo);
                     break;
                 case "D":
-                    Deadline deadline = new Deadline(input[2], input[1].equals("1"), DateTimeParser.parseFromFile(input[3]));
+                    Deadline deadline = new Deadline(input[2], input[1].equals("1"),
+                            DateTimeParser.parseFromFile(input[3]));
                     tasks.add(deadline);
                     break;
                 case "E":
